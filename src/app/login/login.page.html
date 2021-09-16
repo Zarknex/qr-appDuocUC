@@ -1,0 +1,41 @@
+<ion-header>
+  <img class="item-banner" src="assets/Banner.png">
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-vertical">
+    <ion-card class="ion-text-center"> 
+      <ion-card-header>
+        <ion-card-title class="ion-text-left">Inicia sesión con tu cuenta DuocUC</ion-card-title>
+      </ion-card-header>
+      <div>
+        <form [formGroup]="loginForm" (submit)="submit()">
+          <div>
+            <mat-form-field class="input-large">
+              <mat-label>Usuario</mat-label>
+                <input matInput formControlName="user" [(ngModel)]="user" required>
+              <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
+                <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario DuocUC.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="input-large">
+              <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" type="password" required>
+              <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                <span *ngIf="loginForm.controls.password.errors.required" color="warn">Ingresa una contraseña.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        <button mat-raised-button color="accent" type="submit">INGRESAR</button>
+          <ion-item class="ion-padding-horizontal" button detail=false (click)="restablecer()">
+            <ion-text class="ion-padding-horizontal" color="primary">
+              <u>Restablecer contraseña</u>
+            </ion-text>
+          </ion-item>
+        </form>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

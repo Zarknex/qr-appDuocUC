@@ -1,0 +1,55 @@
+@use '~@angular/material' as mat;
+
+@include mat.core();
+
+//Game de colores
+$my-primary-color: (
+    200 : #8995a0,
+    500 : #122a40,
+    700 : #0d1f32,
+    contrast: (
+        200 : #000000,
+        500 : #ffffff,
+        700 : #ffffff,
+    )
+);
+
+$my-accent-color: (
+    200 : #fcdd9f,
+    500 : #f8bb3f,
+    700 : #f6ac31,
+    contrast: (
+        200 : #000000,
+        500 : #ffffff,
+        700 : #000000,
+    )
+);
+
+$my-warn-color: (
+    200 : #ced4da,
+    500 : #9ca8b5,
+    700 : #8a97a5,
+    contrast: (
+        200 : #000000,
+        500 : #000000,
+        700 : #000000,
+    )
+);
+
+//Paleta de colores
+$my-palette-primary: mat.define-palette($my-primary-color);
+$my-palette-accent: mat.define-palette($my-accent-color);
+$my-palette-warn: mat.define-palette(mat.$red-palette);
+//Mi tema
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: $my-palette-primary,
+        accent: $my-palette-accent,
+        warn: $my-palette-warn,
+    )
+));
+//Aplicando mi tema a angular
+
+@include mat.core-theme($my-theme);
+
+@include mat.button-theme($my-theme);

@@ -1,0 +1,13 @@
+<ion-header>
+  <img class="item-banner" src="assets/Banner.png">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+  <!--Interpolacion permite pasar un valor desde .ts a .html-->
+    <strong>¡Bienvenido {{alumno}}!</strong>
+      <div class="ion-padding-top">
+        <button mat-raised-button color="accent" (click)="logout()">Cerrar sesión</button>
+     </div>
+  </div>
+</ion-content>
