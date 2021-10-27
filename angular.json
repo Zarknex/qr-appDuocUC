@@ -31,7 +31,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/assets/styles/my-theme.scss", "src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/assets/styles/my-theme.scss",
+              "src/theme/variables.scss",
+              "src/global.scss"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,
@@ -97,7 +101,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "styles": [ "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+            ],
             "scripts": [],
             "assets": [
               {
@@ -165,6 +171,16 @@
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
             }
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "app:build:production",
+            "firebaseProject": "registrapp-d6663",
+            "firebaseHostingSite": "registrapp-d6663"
           }
         }
       }

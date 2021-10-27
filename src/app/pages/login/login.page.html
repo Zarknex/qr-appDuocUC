@@ -1,19 +1,16 @@
-<ion-header>
-  <img class="item-banner" src="assets/Banner.png">
-</ion-header>
-
+<app-headerbanner></app-headerbanner>
 <ion-content>
   <div class="ion-padding-vertical">
-    <ion-card class="ion-text-center"> 
+    <ion-card class="ion-text-center">
       <ion-card-header>
-        <ion-card-title class="ion-text-left">Inicia sesión con tu cuenta DuocUC</ion-card-title>
+        <ion-card-title class="ion-text-center">Inicia sesión con tu cuenta DuocUC</ion-card-title>
       </ion-card-header>
       <div>
         <form [formGroup]="loginForm" (submit)="submit()">
           <div>
             <mat-form-field class="input-large">
               <mat-label>Usuario</mat-label>
-                <input matInput formControlName="user" [(ngModel)]="user" required>
+              <input matInput formControlName="user" [(ngModel)]="user" required>
               <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
                 <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario DuocUC.</span>
               </mat-error>
@@ -22,18 +19,30 @@
           <div>
             <mat-form-field class="input-large">
               <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="password" required>
+              <input matInput formControlName="password" [(ngModel)]="pass" type="password" required>
               <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
                 <span *ngIf="loginForm.controls.password.errors.required" color="warn">Ingresa una contraseña.</span>
               </mat-error>
             </mat-form-field>
           </div>
-        <button mat-raised-button color="accent" type="submit">INGRESAR</button>
+          <button mat-raised-button color="accent" type="submit">INGRESAR</button>
           <ion-item class="ion-padding-horizontal" button detail=false (click)="restablecer()">
             <ion-text class="ion-padding-horizontal" color="primary">
               <u>Restablecer contraseña</u>
             </ion-text>
           </ion-item>
+          <!--Testing buttons -->
+          <ion-item class="ion-padding-horizontal" button detail=false (click)="testAccount()">
+            <ion-text class="ion-padding-horizontal" color="accent">
+              <u>Añadir usuario test</u>
+            </ion-text>
+          </ion-item>
+          <ion-item class="ion-padding-horizontal" button detail=false (click)="guardarInput()">
+            <ion-text class="ion-padding-horizontal" color="accent">
+              <u>Guardar Input</u>
+            </ion-text>
+          </ion-item>
+          <!--Testing buttons -->
         </form>
       </div>
     </ion-card>

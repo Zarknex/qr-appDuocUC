@@ -8,13 +8,16 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  alumno: any;//variable de tipo any, es decir recibe cualquier tipo de dato naizu
-  constructor(public toastController: ToastController, private activeRoute: ActivatedRoute, private router: Router) {
+  alumno: any; //variable de tipo any, es decir recibe cualquier tipo de dato naizu
+  constructor(
+    public toastController: ToastController,
+    private activeRoute: ActivatedRoute,
+    private router: Router
+  ) {
     //llamada de ruta activa+verificacion de parametros(extra y state)
-    this.activeRoute.queryParams.subscribe(params => {
+    this.activeRoute.queryParams.subscribe((params) => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.alumno = this.router.getCurrentNavigation().extras.state.user;
-        console.log(this.alumno)
       }
     });
   }
@@ -22,13 +25,13 @@ export class HomePage {
   async presentToast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 700
+      duration: 700,
     });
     toast.present();
   }
 
   logout() {
     this.router.navigate(['/login']);
-    this.presentToast("Se ha cerrado sesión correctamente");
+    this.presentToast('Se ha cerrado sesión correctamente');
   }
 }
