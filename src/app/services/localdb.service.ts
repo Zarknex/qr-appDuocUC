@@ -1,20 +1,19 @@
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { Storage } from "@ionic/storage-angular";
-import { Iusers } from '../interfaces/iusers';
+import { Storage } from '@ionic/storage-angular';
+import { Itokens } from '../interfaces/itokens';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocaldbService {
-  usersdb: Iusers[]=[];
-  admin: void;
+  tokensdb: Itokens[]=[];
   private _storage: Storage | null = null;
   constructor(private storage: Storage, private platform: Platform) {
     this.init();
-    this.getUser();
-    this.creartest();
+    this.getTokens();
   }
 
   async init() {
@@ -22,35 +21,33 @@ export class LocaldbService {
     const storage = await this.storage.create();
     this._storage = storage;
   }
-  
 
-  async getUser(){
-    const myusersdb = await this.storage.get('usersdb');
-    if (myusersdb) {
-      this.usersdb = myusersdb;
+  async getTokens(){
+    const mytoken = await this.storage.get('token');
+    if (mytoken) {
+      this.tokensdb = mytoken;
+      return mytoken;
     }
   }
 
-  creartest(){
-    this.platform.ready().then(() => {
-      this.usersdb.unshift({strUsers:"aasda",strPass:"test"});
-      this._storage.set('usersdb',this.usersdb);
-    });
+  getToken(){
+    return !!this.tokensdb.find(t => t.strToken !== undefined);
   }
 
-  validLogin(user:string,pass:string) {
-    return this.usersdb.find(usr=>usr.strUsers === user && usr.strPass === pass);
+  validLogin(token: string) {
+    return this.tokensdb.find(tkn=>tkn.strToken === token //&& usr.strPass === pass
+      );
   }
 
 
-  async saveUser(user:string,pass:string){
-    const exist=this.usersdb.find(u=>u.strUsers===user);
+  async saveToken(token: any){
+    const exist=this.tokensdb.find(u=>u.strToken===token);
     if (!exist) {
-      this.usersdb.unshift({strUsers:user, strPass:pass});
-      this._storage.set('usersdb',this.usersdb);
-      console.log('Usuario guardado')
+      this.tokensdb.unshift({strToken:token});
+      this._storage.set('token',this.tokensdb);
+      console.log('Token guardado');
     } else {
-      console.log('Usuario ya existe')
+      console.log('Token ya existe');
     }
   }
 }

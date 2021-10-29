@@ -6,7 +6,7 @@
         <ion-card-title class="ion-text-center">Inicia sesión con tu cuenta DuocUC</ion-card-title>
       </ion-card-header>
       <div>
-        <form [formGroup]="loginForm" (submit)="submit()">
+        <form [formGroup]="loginForm">
           <div>
             <mat-form-field class="input-large">
               <mat-label>Usuario</mat-label>
@@ -19,20 +19,20 @@
           <div>
             <mat-form-field class="input-large">
               <mat-label>Contraseña</mat-label>
-              <input matInput formControlName="password" [(ngModel)]="pass" type="password" required>
+              <input matInput formControlName="password" [(ngModel)]="password" type="password" required>
               <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
                 <span *ngIf="loginForm.controls.password.errors.required" color="warn">Ingresa una contraseña.</span>
               </mat-error>
             </mat-form-field>
           </div>
-          <button mat-raised-button color="accent" type="submit">INGRESAR</button>
+            <button mat-raised-button color="accent"  (click)="signIn()">INGRESAR</button>
           <ion-item class="ion-padding-horizontal" button detail=false (click)="restablecer()">
             <ion-text class="ion-padding-horizontal" color="primary">
               <u>Restablecer contraseña</u>
             </ion-text>
           </ion-item>
           <!--Testing buttons -->
-          <ion-item class="ion-padding-horizontal" button detail=false (click)="testAccount()">
+          <ion-item class="ion-padding-horizontal" button detail=false (click)="signUp()">
             <ion-text class="ion-padding-horizontal" color="accent">
               <u>Añadir usuario test</u>
             </ion-text>
