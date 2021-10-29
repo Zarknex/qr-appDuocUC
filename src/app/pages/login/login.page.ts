@@ -55,6 +55,12 @@ export class LoginPage implements OnInit {
           console.log(res);
           this.bdlocal.saveToken(res.token);
           this.router.navigate(['/home']);
+          const navigationextras: NavigationExtras = {
+            state: { user: this.user }, //asigno obj con clave y valor
+          };
+          //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
+          this.presentToast('Bienvenido ' + this.user);
+          this.router.navigate(['/home'], navigationextras);
         },
         err => console.log(err)
       );
