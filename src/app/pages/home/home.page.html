@@ -1,10 +1,51 @@
 <app-headerbanner></app-headerbanner>
-<ion-content [fullscreen]="true">
-  <div id="container">
-  <!--Interpolacion permite pasar un valor desde .ts a .html-->
-    <strong>¡Bienvenido {{alumno}}!</strong>
-      <div class="ion-padding-top">
-        <button mat-raised-button color="accent" (click)="logout()">Cerrar sesión</button>
+
+<ion-content>
+  <div class="ion-padding-vertical">
+    <ion-card class="ion-text-center">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Bienvenid@ {{alumno}}</ion-card-title>
+        <ion-text>Para registrar tu asistencia por favor escanea el Codigo QR que te indica tu profesor.</ion-text>
+      </ion-card-header>
+
+
+      <!--QrScan Code-->
+      <div>
+        <input #fileinput type="file" accept="image/*;capture=camera" hidden (change)="handleFile($event.target.files)">
+        <button mat-flat-button color="accent" (click)="captureImage()">
+          <ion-icon name="camera"></ion-icon>Capturar imagen [TEST PURPOSE]
+        </button>
       </div>
-  </div>
-</ion-content>
+      <div>
+        <button mat-flat-button color="accent" (click)="startScan()">
+          <ion-icon name="qr-code-outline"></ion-icon>Escanear QR
+        </button>
+      </div>
+      <div>
+        <button mat-flat-button color="accent" (click)="reset()" color="warning" *ngIf="scanResult">
+          <ion-icon name="refresh"></ion-icon>Resetear
+        </button>
+      </div>
+      <div>
+        <video #video [hidden]="!scanActive" width="100%"></video>
+        <canvas #canvas hidden></canvas>
+      </div>
+      <div>
+        <button mat-flat-button (click)="stopScan()" color="warning" *ngIf="scanActive">
+          <ion-icon name="close"></ion-icon>Dejar de escanear
+        </button>
+      </div>
+      <div>
+        <button mat-button color="accent" (click)="logout()">
+          <ion-icon name="close"></ion-icon>Cerrar sesión
+        </button>
+      </div>
+
+      <ion-card *ngIf="scanResult">
+        <ion-card-header>
+          <ion-card-title>QR Code</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Resultado: {{scanResult}}
+        </ion-card-content>
+      </ion-card>
