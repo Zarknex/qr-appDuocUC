@@ -35,8 +35,7 @@ export class LocaldbService {
   }
 
   validLogin(token: string) {
-    return this.tokensdb.find(tkn=>tkn.strToken === token //&& usr.strPass === pass
-      );
+    return this.tokensdb.find(tkn=>tkn.strToken === token);
   }
 
 

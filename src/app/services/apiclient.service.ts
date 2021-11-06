@@ -31,4 +31,8 @@ export class ApiclientService {
   loggedIn() {
     return !!this.localdb.getToken();
   }
+
+  getAttendance(user) {
+    return this.http.get<any>(this.apiURL + '/attendance', user);
+  }
 }

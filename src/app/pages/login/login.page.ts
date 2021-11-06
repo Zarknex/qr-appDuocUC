@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
   }
 
   signIn() {
-    this.creds = { user: this.user, password: this.password};
+    this.creds = {user: this.user, password: this.password};
     this.apiclient.signInUser(this.creds)
       .subscribe(
         res => {

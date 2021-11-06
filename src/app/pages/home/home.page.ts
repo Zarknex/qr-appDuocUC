@@ -146,6 +146,7 @@ export class HomePage {
       if (code) {
         this.scanActive = false;
         this.scanResult = code.data;
+        console.log('code', this.scanResult);
         this.showQrToast();
       } else {
         if (this.scanActive) {
