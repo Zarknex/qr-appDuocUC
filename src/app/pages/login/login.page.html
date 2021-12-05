@@ -10,25 +10,25 @@
           <div>
             <mat-form-field class="input-large">
               <mat-label>Usuario</mat-label>
-              <input matInput formControlName="user" [(ngModel)]="user" required>
-              <mat-error *ngIf="loginForm.controls.user.touched && loginForm.controls.user.invalid">
-                <span *ngIf="loginForm.controls.user.errors.required">Ingresa tu usuario DuocUC.</span>
+              <input matInput id="inputuser" formControlName="user" [(ngModel)]="user" required>
+              <mat-error *ngIf="loginForm.controls.user.invalid">
+                <span *ngIf="loginForm.controls.user.errors.required" id="userErr">Ingresa tu usuario DuocUC.</span>
               </mat-error>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field class="input-large">
               <mat-label>Contraseña</mat-label>
-              <input matInput formControlName="password" [(ngModel)]="password" type="password" required>
-              <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
-                <span *ngIf="loginForm.controls.password.errors.required" color="warn">Ingresa una contraseña.</span>
+              <input matInput id="inputpass" formControlName="password" [(ngModel)]="password" type="password" required>
+              <mat-error *ngIf="loginForm.controls.password.invalid">
+                <span *ngIf="loginForm.controls.password.errors.required" id="passErr">Ingresa una contraseña.</span>
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <button mat-raised-button color="accent" (click)="signIn()">INGRESAR</button>
+            <button mat-raised-button id="btnSignIn" color="accent" (click)="signIn()">INGRESAR</button>
           </div>
-            <button mat-button color="accent" (click)="restablecer()">Restablecer contraseña</button>
+            <button mat-button color="accent" id="btnReset" (click)="restablecer()">Restablecer contraseña</button>
         </form>
       </div>
     </ion-card>

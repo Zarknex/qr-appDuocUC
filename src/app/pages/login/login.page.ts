@@ -61,6 +61,7 @@ export class LoginPage implements OnInit {
           //Ingresara a la page Home, usando la API Router para llamar a otra page+parametro
           this.presentToast('Bienvenido ' + this.user);
           this.router.navigate(['/home'], navigationextras);
+          this.loginForm.reset();
         },
         err => console.log(err)
       );

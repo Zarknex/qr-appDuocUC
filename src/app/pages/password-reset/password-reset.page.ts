@@ -21,7 +21,8 @@ export class PasswordResetPage implements OnInit {
   async presentToast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 700
+      duration: 5000,
+      cssClass: 'mytoast'
     });
     toast.present();
   }
@@ -30,7 +31,7 @@ export class PasswordResetPage implements OnInit {
     if (!this.resetForm.valid) {
       return;
     }
-    this.presentToast("Se han enviado las instrucciones a su correo electronico.");
+    this.presentToast('Se han enviado las instrucciones a su correo electronico.');
     this.router.navigate(['/login']);
   }
 
