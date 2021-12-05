@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicStorageModule} from '@ionic/storage-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,7 @@ import { AuthGuard } from './guards/auth.guard';
     BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, IonicStorageModule.forRoot(), HttpClientModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, EmailComposer
   ],
   bootstrap: [
     AppComponent

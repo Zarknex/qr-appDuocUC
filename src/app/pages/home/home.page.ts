@@ -1,8 +1,10 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable @angular-eslint/use-lifecycle-interface */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController, Platform } from '@ionic/angular';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import jsQR from 'jsqr';
 
 @Component({
@@ -21,15 +23,16 @@ export class HomePage {
   videoElement: any;
   canvasElement: any;
   canvasContext: any;
-
   loading: HTMLIonLoadingElement;
+  currentDate: string;
 
   constructor(
     public toastCtrl: ToastController,
     private activeRoute: ActivatedRoute,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private plt: Platform
+    private plt: Platform,
+    private emailComposer: EmailComposer
   ) {
     //llamada de ruta activa+verificacion de parametros(extra y state)
     this.activeRoute.queryParams.subscribe((params) => {
@@ -44,6 +47,7 @@ export class HomePage {
     if (this.plt.is('ios') && isInStandaloneMode()) {
       console.log('I am a an iOS PWA!');
     }
+    this.currentDate = new Date().toJSON('yyyy/MM/dd HH:mm');
   }
 
   async presentToast(msg: string) {
@@ -57,6 +61,18 @@ export class HomePage {
   logout() {
     this.router.navigate(['/login']);
     this.presentToast('Se ha cerrado sesión correctamente');
+  }
+
+
+
+  sendMail(email,subject,body) {
+    const send = {
+      to: email,
+      subject: subject,
+      body: body, //this.scanResult + '' + this.alumno
+    };
+
+    this.emailComposer.open(send);
   }
 
   //QR Scan code
@@ -95,6 +111,19 @@ export class HomePage {
       if (code) {
         this.scanResult = code.data;
         this.showQrToast();
+        const result = JSON.parse(this.scanResult);
+        console.log(result.correo);
+        this.sendMail(
+          result.correo,
+          'Asistencia Registrada: '+ this.alumno,
+          '\nID Asignatura: ' + result.idAsignatura +
+          '\nSeccion: '+ result.seccion +
+          '\nAsignatura: '+ result.asignatura +
+          '\nDocente: '+ result.docente +
+          '\nFecha: '+ this.currentDate +
+          '\nRegistrAPP'
+          );
+
       }
     };
     img.src = URL.createObjectURL(file);
