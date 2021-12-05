@@ -16,7 +16,7 @@ export class ApiclientService {
 
   //Se establece la base url del API a consumir para testing -> API Fake normalmente iria la IPv4 192.168.1.123:3000
   //apiURL = 'https://jsonplaceholder.typicode.com';
-  apiURL = 'http://localhost:3000/api';
+  apiURL = 'http://zarknex.sytes.net:25565/api';
   //Se declara la variable HTTP de tipo HTTPClient
   constructor(private http: HttpClient, private localdb: LocaldbService) { }
 
