@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ApiclientService } from './services/apiclient.service';
 import { LocaldbService } from './services/localdb.service';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, IonicStorageModule.forRoot(), HttpClientModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, ApiclientService, LocaldbService, AndroidPermissions
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthGuard, ApiclientService, LocaldbService, AndroidPermissions,
+    EmailComposer
   ],
   bootstrap: [
     AppComponent

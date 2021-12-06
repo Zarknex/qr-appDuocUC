@@ -4,6 +4,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController, Platform } from '@ionic/angular';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import jsQR from 'jsqr';
 
 @Component({
@@ -24,6 +25,7 @@ export class HomePage {
   canvasContext: any;
   loading: HTMLIonLoadingElement;
   currentDate: string;
+  emailstring: any;
 
   constructor(
     public toastCtrl: ToastController,
@@ -31,6 +33,7 @@ export class HomePage {
     private router: Router,
     private loadingCtrl: LoadingController,
     private plt: Platform,
+    private emailComposer: EmailComposer,
   ) {
     //llamada de ruta activa+verificacion de parametros(extra y state)
     this.activeRoute.queryParams.subscribe((params) => {
@@ -56,19 +59,13 @@ export class HomePage {
     toast.present();
   }
 
+  sendEmail(){
+    this.emailComposer.open(this.emailstring);
+  }
+
   logout() {
     this.router.navigate(['/login']);
     this.presentToast('Se ha cerrado sesión correctamente');
-  }
-
-
-
-  sendMail(email,subject,body) {
-    const send = {
-      to: email,
-      subject: subject,
-      body: body, //this.scanResult + '' + this.alumno
-    };
   }
 
   //QR Scan code
@@ -109,17 +106,16 @@ export class HomePage {
         this.showQrToast();
         const result = JSON.parse(this.scanResult);
         console.log(result.correo);
-        this.sendMail(
-          result.correo,
-          'Asistencia Registrada: '+ this.alumno,
-          '\nID Asignatura: ' + result.idAsignatura +
+        this.emailstring = {
+          to: result.correo,
+          subject: 'Asistencia Registrada: '+ this.alumno,
+          body: '\nID Asignatura: ' + result.idAsignatura +
           '\nSeccion: '+ result.seccion +
           '\nAsignatura: '+ result.asignatura +
           '\nDocente: '+ result.docente +
           '\nFecha: '+ this.currentDate +
           '\nRegistrAPP'
-          );
-
+        };
       }
     };
     img.src = URL.createObjectURL(file);

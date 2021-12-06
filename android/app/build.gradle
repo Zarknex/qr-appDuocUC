@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\rmttc\\keystore.jks')
+            storePassword '156156'
+            keyAlias 'key01'
+            keyPassword '156156'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "zark.registrapp.release"

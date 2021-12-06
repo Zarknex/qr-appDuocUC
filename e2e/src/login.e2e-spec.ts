@@ -7,15 +7,6 @@ describe('Prueba página "Login"', () => {
     page = new AppPage();
   });
 
-
-
-  //FALTA PRUEBA
-  //FALTA PRUEBA
-  //FALTA PRUEBA
-  //FALTA PRUEBA
-  //FALTA PRUEBA
-  //FALTA PRUEBA
-  //FALTA PRUEBA
   it('Validar error login vacio.', async () => {
     await browser.get('/login');
     await browser.driver.sleep(500);

@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { MatButtonModule } from '@angular/material/button';
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { EmailComposer } from '@ionic-native/email-composer/';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     HomePageRoutingModule,
     MatButtonModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   declarations: [HomePage]
 })
