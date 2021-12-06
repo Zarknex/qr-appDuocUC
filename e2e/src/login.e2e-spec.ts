@@ -7,11 +7,21 @@ describe('Prueba página "Login"', () => {
     page = new AppPage();
   });
 
-  it('Prueba de Error 404 intentando entrar a "/admin"', async () => {
-    await browser.get('/admin');
-    await browser.driver.sleep(1000);
-    const error = element(by.id('title404'));
 
-    expect(await error.getText()).toEqual('ERROR 404');
+
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  //FALTA PRUEBA
+  it('Validar error login vacio.', async () => {
+    await browser.get('/login');
+    await browser.driver.sleep(500);
+    await element(by.id('btnSignIn')).click();
+    const error = element(by.id('passErr'));
+
+    expect(await error.getText()).toEqual('Ingresa una contraseña.');
   });
 });

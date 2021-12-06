@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package zark.registrapp.release;
 
 import com.getcapacitor.BridgeActivity;
 

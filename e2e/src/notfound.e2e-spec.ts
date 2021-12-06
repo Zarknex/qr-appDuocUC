@@ -7,14 +7,11 @@ describe('Prueba página "notfound"', () => {
         page = new AppPage();
     });
 
-    it('Prueba de persistencia en Home.', async () => {
-    await browser.get('/login');
-        await element(by.id('inputuser')).sendKeys('ma.donosoo');
-        await element(by.id('inputpass')).sendKeys('donoso123');
-        await browser.driver.sleep(500);
-        await element(by.id('btnSignIn')).click();
-        const x = element(by.id('Bienvenida'));
+    it('Prueba de Error 404 intentando entrar a "/admin"', async () => {
+        await browser.get('/admin');
+        await browser.driver.sleep(1000);
+        const error = element(by.id('title404'));
 
-        expect(await x.getText()).toEqual('Bienvenid@ ma.donosoo');
+        expect(await error.getText()).toEqual('ERROR 404');
     });
 });

@@ -4,7 +4,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController, Platform } from '@ionic/angular';
-import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import jsQR from 'jsqr';
 
 @Component({
@@ -32,7 +31,6 @@ export class HomePage {
     private router: Router,
     private loadingCtrl: LoadingController,
     private plt: Platform,
-    private emailComposer: EmailComposer
   ) {
     //llamada de ruta activa+verificacion de parametros(extra y state)
     this.activeRoute.queryParams.subscribe((params) => {
@@ -71,8 +69,6 @@ export class HomePage {
       subject: subject,
       body: body, //this.scanResult + '' + this.alumno
     };
-
-    this.emailComposer.open(send);
   }
 
   //QR Scan code
@@ -130,7 +126,7 @@ export class HomePage {
   }
   async startScan() {
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'enviroment' },
+      video: { facingMode: 'environment' },
     });
     this.videoElement.srcObject = stream;
     this.videoElement.setAttribute('playsinline', true);
